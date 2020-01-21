@@ -1,0 +1,68 @@
+const CustomDatePicker =() =>{
+  const[state,updateState]=useState({
+    from: null,
+    to: null,
+    enteredTo: null, // Keep track of the last day for mouseEnter.
+  })
+
+  const isSelectingFirstDay = (from, to, day) => {
+    const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
+    const isRangeSelected = from && to;
+    return !from || isBeforeFirstDay || isRangeSelected;
+  }
+  const handleDayClick = (day) => {
+    const { from, to } = state;
+    if (isSelectingFirstDay(from, to, day)) {
+      updateState({
+        from: day,
+        to: null,
+        enteredTo: null,
+      });
+    } else {
+        updateState({
+        to: day,
+        enteredTo: day,
+      });
+    }
+  }
+
+  const handleDayMouseEnter = (day) => {
+    const { from, to } = state;
+    if (!isSelectingFirstDay(from, to, day)) {
+      updateState({
+        enteredTo: day,
+      });
+    }
+  }
+  const { from, to, enteredTo } = state;
+  const modifiers = { start: from, end: enteredTo };
+  const disabledDays = { before: state.from };
+  const selectedDays = [from, { from, to: enteredTo }];
+
+
+  return (
+    <div>
+      <DayPicker
+        className="Range"
+        numberOfMonths={12}
+        fromMonth={from}
+        selectedDays={selectedDays}
+        disabledDays={disabledDays}
+        modifiers={modifiers}
+        navbarElement={<div></div>}
+        onDayClick={handleDayClick}
+        onDayMouseEnter={handleDayMouseEnter}
+      />
+      <div>
+        {!from && !to && 'Please select the first day.'}
+        {from && !to && 'Please select the last day.'}
+        {from &&
+          to &&
+          `Selected from ${from.toLocaleDateString()} to
+              ${to.toLocaleDateString()}`}{' '}
+      </div>
+    </div>
+  );
+
+
+}

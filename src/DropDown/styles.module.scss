@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+  
+}
+.button {
+  padding: 0;
+  border: 0;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: 0;
+  font-size: 14px;
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 18rem;
+  height: 20rem;
+  z-index: 2;
+  border: 1px solid #0000000D;
+  box-shadow: 0 16px 24px 2px #0000000D;
+  border-radius:6px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 3rem 1fr
+}
+
+.header{
+  grid-row: 1/2;
+  background-color: #0000000D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#4F5D62;
+  font-size: 1.2rem
+}
+.body{
+  overflow-y: scroll
+}
+.body::-webkit-scrollbar {
+  display: none;
+  }

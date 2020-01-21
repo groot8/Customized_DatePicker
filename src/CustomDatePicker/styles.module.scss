@@ -1,0 +1,24 @@
+.inputField{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  height: 1rem;
+  color: #0000000D;
+  margin-top: 1rem;
+  & input{
+    width:6rem;
+    height: 1.25rem;
+    padding-left: 0.2rem;
+    margin: 0.2rem;
+    color: #0000000D;
+    border: 1px solid #0000000D;
+  }
+  
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+
+}
